@@ -1,0 +1,10 @@
+**/*.json
+**/*.md
+**/*.pug
+**/*.html
+**/*.map
+**/*.zip
+**/*.env
+**/*.log
+dist
+node_modules
