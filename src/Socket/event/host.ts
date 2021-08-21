@@ -3,7 +3,7 @@ import { RoomManager } from 'Room/RoomManger';
 
 export default async function (socket:Socket) {
 	socket.on('host', function (data) {
-		console.log('Event: Host');
+		console.log('Event: Host', data);
 		let room = RoomManager.getInstance().addRoom();
 
 		if (data.character === 0) {
