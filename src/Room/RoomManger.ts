@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4';
+// import { uuid } from 'uuidv4';
 import { Room } from './Room';
 
 export class RoomManager {
@@ -23,7 +23,7 @@ export class RoomManager {
 	}
 
 	public addRoom(): Room {
-		let roomId = uuid();
+		let roomId = 'test';
 		let room = new Room(roomId);
 		this.roomList.set(roomId, room);
 		return room;
