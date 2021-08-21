@@ -10,7 +10,7 @@ export class Room {
     private direction: Direction;
     private playFlag: boolean;
 
-    constructor(roomId: string, refreshTick: number = 50) {
+    constructor(roomId: string, refreshTick: number = 100) {
     	this.roomId = roomId;
     	this.refreshTick = refreshTick;
     	this.playFlag = false;
