@@ -1,10 +1,10 @@
-import { Socket } from "socket.io";
-import { RoomManager } from "Room/RoomManger";
+import { Socket } from 'socket.io';
+import { RoomManager } from 'Room/RoomManger';
 
 export default async function (socket:Socket) {
-    socket.on('finish', function (data) {
+	socket.on('finish', function (data) {
         
-        RoomManager.getInstance().removeRoom(data.roomId);
+		RoomManager.getInstance().removeRoom(data.roomId);
 
-    });
+	});
 };

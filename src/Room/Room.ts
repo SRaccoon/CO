@@ -22,11 +22,11 @@ export class Room {
     }
 
     public chooseLeft(id: string) {
-        if(!this.archeologist){
-            this.setArcheologist(id);
-        }else{
-            this.setAssistant(id);
-        }
+    	if (!this.archeologist) {
+    		this.setArcheologist(id);
+    	} else {
+    		this.setAssistant(id);
+    	}
     }
 
     public render() {

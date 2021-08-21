@@ -1,13 +1,12 @@
-import { Socket } from "socket.io";
-import { RoomManager } from "Room/RoomManger";
+import { Socket } from 'socket.io';
+import { RoomManager } from 'Room/RoomManger';
 
 export default async function (socket:Socket) {
-    socket.on('join', function (data) {
+	socket.on('join', function (data) {
 
-        let room = RoomManager.getInstance().getGame(data.roomId);
-        room.chooseLeft(socket.id);
-        socket.join(room.getRoomId());
-        room.render();
-
-    });
+		let room = RoomManager.getInstance().getGame(data.roomId);
+		room.chooseLeft(socket.id);
+		socket.join(room.getRoomId());
+		room.render();
+	});
 };
