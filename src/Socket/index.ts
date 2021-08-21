@@ -25,8 +25,7 @@ export class SocketManager {
 			let dirs = readdirSync(path);
 			
 			for (let dir of dirs) {
-				if (dir.indexOf('js.map') === -1) { // 파일이없으면 import를 하겠다.
-					console.log(path + '/' + dir);
+				if (dir.indexOf('js.map') === -1) {
 					(await import(path + '/' + dir)).default(socket);
 				}
 			}
