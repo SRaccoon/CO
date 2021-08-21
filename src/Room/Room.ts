@@ -34,6 +34,10 @@ export class Room {
     	}
     }
 
+    public setDirection(direction: Direction) {
+    	this.direction = direction;
+    }
+
     public start() {
     	this.broadcast('start', {});
     	this.play();
