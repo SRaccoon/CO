@@ -4,10 +4,11 @@ export class Room {
     private roomId: string;
     private archeologist: string;
     private assistant: string;
+    public count : number = 0;
 
     constructor(roomId: string) {
-    	this.roomId = roomId;
-    }
+    	this.roomId = roomId;    	
+    }        
 
     public getRoomId(): string {
     	return this.roomId;
@@ -36,5 +37,10 @@ export class Room {
 
     public broadcast(event: string, messageObject: any) {
     	SocketManager.getInstance().sendPacketToRoom(this.roomId, event, messageObject);
+    }
+
+    public check() {
+    	if (this.count === 2) return true;
+    	return false;
     }
 }
