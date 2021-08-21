@@ -3,16 +3,19 @@ import { Socket } from 'socket.io';
 
 export default async function (socket:Socket) {
     
-	socket.on('renderComplete', function (msg : {roomId : string}) {           
-		console.log('Event: Render Complete', msg);                                      
-		const room = RoomManager.getInstance().getGame(msg.roomId);
-		room.increaseCount();
+	socket.on('renderComplete', function (msg : {roomId : string}) {        
+		try {   
+			console.log('Event: Render Complete', msg);                                      
+			const room = RoomManager.getInstance().getGame(msg.roomId);
+			room.increaseCount();
 
-		if (room.check()) {
-			room.start();
-			room.setCount(0);
+			if (room.check()) {
+				room.start();
+				room.setCount(0);
+			}
+		} catch (e) {
+			console.log(e);
 		}
-		
 	});     
 
 };
