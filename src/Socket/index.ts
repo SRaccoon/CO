@@ -23,8 +23,10 @@ export class SocketManager {
 			console.log('Socket Connected: ', socket.id, socket.handshake.address);
 			let path = __dirname + '/event';
 			let dirs = readdirSync(path);
+			
 			for (let dir of dirs) {
-				if (dir.indexOf('js.map') === -1) {
+				if (dir.indexOf('js.map') === -1) { // 파일이없으면 import를 하겠다.
+					console.log(path + '/' + dir);
 					(await import(path + '/' + dir)).default(socket);
 				}
 			}
