@@ -21,12 +21,20 @@ export class Room {
     	this.assistant = assistantId;
     }
 
+    public chooseLeft(id: string) {
+    	if (!this.archeologist) {
+    		this.setArcheologist(id);
+    	} else {
+    		this.setAssistant(id);
+    	}
+    }
+
     public render() {
     	SocketManager.getInstance().sendPacketToClient(this.archeologist, 'render', {});
     	SocketManager.getInstance().sendPacketToClient(this.assistant, 'render', {});
     }
 
-    public broadcast(messageObject: any) {
-    	SocketManager.getInstance().sendPacketToRoom(this.roomId, 'command', messageObject);
+    public broadcast(event: string, messageObject: any) {
+    	SocketManager.getInstance().sendPacketToRoom(this.roomId, event, messageObject);
     }
 }
