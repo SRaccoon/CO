@@ -34,7 +34,7 @@ export class Room {
     	SocketManager.getInstance().sendPacketToClient(this.assistant, 'render', {});
     }
 
-    public broadcast(messageObject: any) {
-    	SocketManager.getInstance().sendPacketToRoom(this.roomId, 'command', messageObject);
+    public broadcast(event: string, messageObject: any) {
+    	SocketManager.getInstance().sendPacketToRoom(this.roomId, event, messageObject);
     }
 }
