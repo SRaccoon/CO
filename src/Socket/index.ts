@@ -1,6 +1,6 @@
 import { readdirSync } from 'fs';
 import { RoomManager } from 'Room/RoomManger';
-import { listen, Server, Socket } from 'socket.io';
+import { listen, Server } from 'socket.io';
 
 export class SocketManager {
 	public static instance: SocketManager;
@@ -30,11 +30,12 @@ export class SocketManager {
 					(await import(path + '/' + dir)).default(socket);
 				}
 			}
-		});
 
-		this.io.on('disconnect', async (socket: Socket) => {
-			console.log('Socket Disconnected', socket.id, socket.handshake.address);
-			RoomManager.getInstance().removeRoom(socket.rooms[0]);
+			socket.on('disconnect', async () => {
+				console.log('Socket Disconnected', socket.id);
+				RoomManager.getInstance().removeRoom(socket.rooms[0]);
+			});
+
 		});
 	}
 
