@@ -8,18 +8,28 @@ export class Room {
     private count : number = 0;          
     private refreshTick: number;
     private direction: Direction;
+    private playFlag: boolean;
 
     constructor(roomId: string, refreshTick: number = 100) {
     	this.roomId = roomId;
     	this.refreshTick = refreshTick;
+    	this.playFlag = false;
     }
 
     public getRoomId(): string {
     	return this.roomId;
     }
 
+    public getArcheologist() {
+    	return this.archeologist;
+    }
+
     public setArcheologist(archeologistId: string) {
     	this.archeologist = archeologistId;
+    }
+
+    public getAssistant() {
+    	return this.assistant;
     }
 
     public setAssistant(assistantId: string) {
@@ -40,15 +50,18 @@ export class Room {
 
     public start() {
     	this.broadcast('start', {});
+    	this.playFlag = true;
     	this.play();
     }
 
     public play() {
     	this.broadcast('move', { direction: this.direction });
     	
+    	if (this.playFlag) {
     	setTimeout(() => {
     		this.play();
     	}, this.refreshTick);
+    	}
     }
 
     public render() {
@@ -71,5 +84,14 @@ export class Room {
     public check() {
     	if (this.count === 2) return true;
     	return false;
+    }
+
+    public isPlaying() {
+    	return this.playFlag;
+    }
+
+    public finishGame(isClear: boolean, time: number) {
+    	this.playFlag = false;
+    	this.broadcast('finish', { isClear, time });
     }
 }
