@@ -2,8 +2,8 @@ import { SocketManager } from 'Socket';
 
 export class Room {
     private roomId: string;
-    private host: string;
-    private normal: string;
+    private archeologist: string;
+    private assistant: string;
 
     constructor(roomId: string) {
     	this.roomId = roomId;
@@ -13,17 +13,17 @@ export class Room {
     	return this.roomId;
     }
 
-    public setHost(hostId: string) {
-    	this.host = hostId;
+    public setArcheologist(archeologistId: string) {
+    	this.archeologist = archeologistId;
     }
 
-    public setNormal(normalId: string) {
-    	this.normal = normalId;
+    public setAssistant(assistantId: string) {
+    	this.assistant = assistantId;
     }
 
     public render() {
-    	SocketManager.getInstance().sendPacketToClient(this.host, 'render', {});
-    	SocketManager.getInstance().sendPacketToClient(this.normal, 'render', {});
+    	SocketManager.getInstance().sendPacketToClient(this.archeologist, 'render', {});
+    	SocketManager.getInstance().sendPacketToClient(this.assistant, 'render', {});
     }
 
     public broadcast(messageObject: any) {
