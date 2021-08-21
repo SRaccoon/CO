@@ -9,7 +9,7 @@ export class Room {
     private refreshTick: number;
     private direction: Direction;
 
-    constructor(roomId: string, refreshTick: number = 16) {
+    constructor(roomId: string, refreshTick: number = 500) {
     	this.roomId = roomId;
     	this.refreshTick = refreshTick;
     }
