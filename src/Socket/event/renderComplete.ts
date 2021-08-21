@@ -8,7 +8,6 @@ export default async function (socket:Socket) {
 		room.increaseCount();
 
 		if (room.check()) {
-			console.log('여기?');
 			room.start();
 			room.setCount(0);
 		}

@@ -12,8 +12,6 @@ export default async function (socket:Socket) {
 		}
 
 		socket.join(room.getRoomId());
-        
-		console.log(RoomManager.getInstance().getGame(room.getRoomId()));
 		socket.emit('inviteCode', { roomId: room.getRoomId() });
 	});
 };

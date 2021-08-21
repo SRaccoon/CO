@@ -47,7 +47,7 @@ export class Room {
     	this.broadcast('move', { direction: this.direction });
     	
     	setTimeout(() => {
-    		this.play;
+    		this.play();
     	}, this.refreshTick);
     }
 
