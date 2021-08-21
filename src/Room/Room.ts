@@ -1,4 +1,4 @@
-import { Direction } from 'Config/Direction';
+// import { Direction } from 'Config/Direction';
 import { Vector } from 'Resource/Vector';
 import { SocketManager } from 'Socket';
 
@@ -7,22 +7,20 @@ export class Room {
     private archeologist: string;
     private assistant: string;
     private count : number = 0;          
-    private refreshTick: number;
+    // private refreshTick: number;
     
-    private direction: Direction;
-    private ball: Vector;
-    private wire: Vector;
+    // private direction: Direction;
+    // private ball: Vector;
+    // private wire: Vector;
 
     private playFlag: boolean;
 
     constructor(roomId: string, refreshTick: number = 100) {
     	this.roomId = roomId;
-    	this.refreshTick = refreshTick;
+    	// this.refreshTick = refreshTick;
     	this.playFlag = false;
-    	this.ball.x = 0;
-    	this.ball.y = 0;
-    	this.wire.x = 0;
-    	this.wire.y = 0;
+    	// this.ball = { x: 0, y: 0 };
+    	// this.wire = { x: 0, y: 0 };
     }
 
     public getRoomId(): string {
@@ -53,35 +51,39 @@ export class Room {
     	}
     }
 
-    public setSyncData(direction: Direction, ball: Vector, wire: Vector) {
-    	this.direction = direction;
-    	this.ball = ball;
-    	this.wire = wire;
-    }
+    // public setSyncData(direction: Direction, ball: Vector, wire: Vector) {
+    // 	this.direction = direction;
+    // 	this.ball = ball;
+    // 	this.wire = wire;
+    // }
 
     public start() {
     	this.broadcast('start', {});
     	this.playFlag = true;
-    	this.play();
+    	// this.play();
     }
 
-    public play() {
-    	this.broadcast('move', { 
-    		direction: this.direction,
-    		ball: this.ball,
-    		wire: this.wire
-    	});
+    // public play() {
+    // 	this.broadcast('move', { 
+    // 		direction: this.direction,
+    // 		ball: this.ball,
+    // 		wire: this.wire
+    // 	});
     	
-    	if (this.playFlag) {
-    	setTimeout(() => {
-    		this.play();
-    	}, this.refreshTick);
-    	}
-    }
+    // 	if (this.playFlag) {
+    // 	setTimeout(() => {
+    // 		this.play();
+    // 	}, this.refreshTick);
+    // 	}
+    // }
 
     public render() {
     	SocketManager.getInstance().sendPacketToClient(this.archeologist, 'render', {});
     	SocketManager.getInstance().sendPacketToClient(this.assistant, 'render', {});
+    }
+
+    public sync(ball: Vector, wire: Vector) {
+    	SocketManager.getInstance().sendPacketToClient(this.assistant, 'sync', { ball, wire });
     }
 
     public broadcast(event: string, messageObject: any) {
