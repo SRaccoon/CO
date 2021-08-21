@@ -1,4 +1,3 @@
-// import { GameManager } from '04_Game/GameManger';
 import { readdirSync } from 'fs';
 import { listen, Server } from 'socket.io';
 
@@ -40,7 +39,7 @@ export class SocketManager {
 		this.io.sockets.connected[userId].emit(eventName, data);
 	}
 
-	public sendPacketToRoom(gameId: string, eventName: string, data: any) {
-		this.io.to(gameId).emit(eventName, data);
+	public sendPacketToRoom(roomId: string, eventName: string, data: any) {
+		this.io.to(roomId).emit(eventName, data);
 	}
 }
