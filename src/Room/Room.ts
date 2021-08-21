@@ -56,6 +56,14 @@ export class Room {
     	SocketManager.getInstance().sendPacketToRoom(this.roomId, event, messageObject);
     }
 
+    public increaseCount() {
+    	this.count++;
+    }
+
+    public setCount(num : number) {
+    	this.count = num;
+    }
+
     public check() {
     	if (this.count === 2) return true;
     	return false;
