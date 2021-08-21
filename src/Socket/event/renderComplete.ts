@@ -7,7 +7,7 @@ export default async function (socket:Socket) {
 		const room = RoomManager.getInstance().getGame(msg.roomId);
         
 		if (room.check()) {
-			room.broadcast('start', msg);
+			room.start();
 		}
 		
 	});

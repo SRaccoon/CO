@@ -1,14 +1,18 @@
+import { Direction } from 'Config/Direction';
 import { SocketManager } from 'Socket';
 
 export class Room {
     private roomId: string;
     private archeologist: string;
     private assistant: string;
-    public count : number = 0;
+    private count : number = 0;          
+    private refreshTick: number;
+    private direction: Direction;
 
-    constructor(roomId: string) {
-    	this.roomId = roomId;    	
-    }        
+    constructor(roomId: string, refreshTick: number = 16) {
+    	this.roomId = roomId;
+    	this.refreshTick = refreshTick;
+    }
 
     public getRoomId(): string {
     	return this.roomId;
@@ -28,6 +32,19 @@ export class Room {
     	} else {
     		this.setAssistant(id);
     	}
+    }
+
+    public start() {
+    	this.broadcast('start', {});
+    	this.play();
+    }
+
+    public play() {
+    	this.broadcast('move', { direction: this.direction });
+    	
+    	setTimeout(() => {
+    		this.play;
+    	}, this.refreshTick);
     }
 
     public render() {
