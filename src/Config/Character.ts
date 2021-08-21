@@ -1,4 +1,4 @@
-export enum UserType {
+export enum Character {
     Archeologist,
     Assistant
 }
