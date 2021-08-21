@@ -3,7 +3,8 @@ import { Socket } from 'socket.io';
 
 export default async function (socket:Socket) {
     
-	socket.on('renderComplete', function (msg : {roomId : string}) {                                                 
+	socket.on('renderComplete', function (msg : {roomId : string}) {           
+		console.log('Event: Render Complete');                                      
 		const room = RoomManager.getInstance().getGame(msg.roomId);
 		room.increaseCount();
 
