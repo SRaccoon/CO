@@ -5,7 +5,9 @@ export default async function (socket:Socket) {
     socket.on('join', function (data) {
 
         let room = RoomManager.getInstance().getGame(data.roomId);
-        room.setAssistant(socket.id);
+        room.chooseLeft(socket.id);
+        socket.join(room.getRoomId());
+        room.render();
 
     });
 };

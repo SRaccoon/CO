@@ -10,6 +10,8 @@ export default async function (socket:Socket) {
         }else if(data.character === 1){
             room.setAssistant(socket.id);
         }
+        socket.join(room.getRoomId());
+        socket.emit('inviteCode', { roomId : room.getRoomId() });
 
     });
 };

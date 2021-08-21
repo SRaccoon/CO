@@ -21,6 +21,14 @@ export class Room {
     	this.assistant = assistantId;
     }
 
+    public chooseLeft(id: string) {
+        if(!this.archeologist){
+            this.setArcheologist(id);
+        }else{
+            this.setAssistant(id);
+        }
+    }
+
     public render() {
     	SocketManager.getInstance().sendPacketToClient(this.archeologist, 'render', {});
     	SocketManager.getInstance().sendPacketToClient(this.assistant, 'render', {});
