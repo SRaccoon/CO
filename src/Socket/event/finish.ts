@@ -7,6 +7,9 @@ export default async function (socket:Socket) {
 			const room = RoomManager.getInstance().getGame(data.roomId);
 
 			if (room.isPlaying()) {
+				if(data.isClear){
+					RoomManager.getInstance().rank(data.roomId, data.time);
+				}
 				room.finishGame(data.isClear, data.time);
 			}
 		} catch (e) {
