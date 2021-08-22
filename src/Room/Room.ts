@@ -16,7 +16,7 @@ export class Room {
 
     private playFlag: boolean;
 
-    constructor(roomId: string, refreshTick: number = 100) {
+    constructor(roomId: string, refreshTick: number = 16) {
     	this.roomId = roomId;
     	// this.refreshTick = refreshTick;
     	this.playFlag = false;
@@ -83,8 +83,8 @@ export class Room {
     	SocketManager.getInstance().sendPacketToClient(this.assistant, 'render', { character: Character.Assistant });
     }
 
-    public sync(ball: Vector, wire: Vector) {
-    	SocketManager.getInstance().sendPacketToClient(this.assistant, 'sync', { ball, wire });
+    public sync(ball: Vector, wire: Vector, time: number) {
+    	SocketManager.getInstance().sendPacketToClient(this.assistant, 'sync', { ball, wire, time });
     }
 
     public broadcast(event: string, messageObject: any) {
