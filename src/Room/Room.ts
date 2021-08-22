@@ -83,7 +83,7 @@ export class Room {
     	SocketManager.getInstance().sendPacketToClient(this.assistant, 'render', { character: Character.Assistant });
     }
 
-    public sync(ball: Vector, wire: Vector, time: number) {
+    public sync(ball: Vector, wire: Vector, time: string) {
     	SocketManager.getInstance().sendPacketToClient(this.assistant, 'sync', { ball, wire, time });
     }
 
