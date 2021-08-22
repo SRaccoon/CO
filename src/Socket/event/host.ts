@@ -14,6 +14,7 @@ export default async function (socket:Socket) {
 			}
 
 			socket.join(room.getRoomId());
+			console.log(room.getRoomId());
 			socket.emit('inviteCode', { roomId: room.getRoomId() });
 		} catch (e) {
 			console.log(e);

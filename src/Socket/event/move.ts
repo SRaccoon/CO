@@ -9,7 +9,7 @@ export default async function (socket:Socket) {
 			console.log('Event: Move', data);
 			const start = new Date(data.time).getTime();
 			const arrive = new Date().getTime();
-			console.log('latency', arrive - start);
+			console.log('latency', arrive, start, arrive - start);
 			const room = RoomManager.getInstance().getGame(data.roomId);
 			room.sync(data.ball, data.wire, data.time);
 			// room.setSyncData(data.direction, data.ball, data.wire);
