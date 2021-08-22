@@ -7,6 +7,8 @@ export default async function (socket:Socket) {
 	socket.on('sync', function (data: {roomId: string, direction: Direction, ball:Vector, wire: Vector, time: number}) {         
 		try {                        
 			console.log('Event: Move', data);
+			const date = new Date().getTime();
+			console.log('latency', date - data.time);
 			const room = RoomManager.getInstance().getGame(data.roomId);
 			room.sync(data.ball, data.wire, data.time);
 			// room.setSyncData(data.direction, data.ball, data.wire);
