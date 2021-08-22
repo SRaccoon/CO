@@ -8,9 +8,11 @@ export default async function (socket:Socket) {
 	socket.on('sync', function (data: {roomId: string, direction: Direction, ball:Vector, wire: Vector, time: string}) {         
 		try {                        
 			console.log('Event: Move', data);
-			const start = moment(data.time).valueOf();
-			const arrive = moment().valueOf();
-			console.log('latency', arrive, start, arrive - start);
+			const start = moment(data.time);
+			const arrive = moment();
+			console.log('start', start.minutes(), start.seconds, start.milliseconds);
+			console.log('arrive', arrive.minutes(), arrive.seconds, arrive.milliseconds);
+			console.log('latency', arrive, start, arrive.valueOf() - start.valueOf());
 			const room = RoomManager.getInstance().getGame(data.roomId);
 			room.sync(data.ball, data.wire, data.time);
 			// room.setSyncData(data.direction, data.ball, data.wire);
