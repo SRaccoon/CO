@@ -1,4 +1,5 @@
 // import { Direction } from 'Config/Direction';
+import { Character } from 'Config/Character';
 import { Vector } from 'Resource/Vector';
 import { SocketManager } from 'Socket';
 
@@ -78,8 +79,8 @@ export class Room {
     // }
 
     public render() {
-    	SocketManager.getInstance().sendPacketToClient(this.archeologist, 'render', {});
-    	SocketManager.getInstance().sendPacketToClient(this.assistant, 'render', {});
+    	SocketManager.getInstance().sendPacketToClient(this.archeologist, 'render', { character: Character.Archeologist });
+    	SocketManager.getInstance().sendPacketToClient(this.assistant, 'render', { character: Character.Assistant });
     }
 
     public sync(ball: Vector, wire: Vector) {
